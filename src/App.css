@@ -1,38 +1,195 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: relative;
+}
+.header-prop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header-image {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 10px;
+  top: -8px;
+  padding: 1px;
+  margin-top: 13px;
+  animation-name: header;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  border-radius: 20%;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 255, 255, 0.8);
+  box-shadow: 0 0 60px 5px rgba(0, 0, 0, 0.8);
+}
+.header-tag {
+  position: absolute;
+  top: 2px;
+  margin-top: 0.8em;
+  margin-bottom: 3.2em;
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+.material-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button-material {
+  width: 5em;
+  height: 2.5em;
+  padding: 5px;
+  color: #fff;
+  outline: none;
+  margin-bottom: 5px;
+  border: 2px solid rgba(250, 255, 255, 0.8);
+  border-radius: 20px;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+.button-material:hover {
+  cursor: pointer;
+}
+.material-list-container {
+  max-width: 500px;
+  width: 90%;
+  height: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  display: grid;
+  padding: 20px;
+  border-radius: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+  justify-items: center;
+  box-shadow: inset 5px 5px 5px #fdfdfdd8, inset -5px -5px 5px #fdfdfdd8;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+.material-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0px;
+  width: 85px;
+  height: 65px;
+  border-radius: 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgb(120 120 120 / 30%) 42%,
+    rgb(51 51 51 / 30%) 100%
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgb(122 122 122 / 30%);
+  box-shadow: 0 0 60px 5px rgba(0, 0, 0, 0.2);
+}
+.material-container:hover {
+  cursor: pointer;
+}
+.material-image {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border: 2px solid rgba(250, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 8px 55px #ffdee9;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.material-name {
+  color: rgba(250, 255, 255, 0.8); /* fallback for old browsers */
+  font-size: 10px;
+  margin-top: 25px;
+}
+.material-icon {
+  width: 1.5em;
+  height: 1.5em;
+  font-weight: 600;
+}
+.material-icon.isSelected {
+  color: rgb(0, 214, 82);
+}
+.material-icon.notSelected {
+  color: rgb(25, 27, 26);
+}
+.sandwich-image.small {
+  width: 35px;
+  height: 35px;
+}
+.sandwich-image.big {
+  width: 90px;
+  height: 90px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes header {
   from {
-    transform: rotate(0deg);
+    background-color: #0093e9;
   }
   to {
-    transform: rotate(360deg);
+    background-color: #80d0c7;
+  }
+}
+@media (max-width: 1600px) {
+  .header-image {
+    width: 3.2rem;
+    height: 3.2rem;
+    left: 70px;
+    top: 8px;
+    position: absolute;
+  }
+  .header-tag {
+    position: absolute;
+    top: 20px;
+    margin-top: 0.8em;
+    margin-bottom: 3.2em;
+    margin-left: 20px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+  }
+}
+@media (max-width: 600px) {
+  .header-image {
+    width: 2rem;
+    height: 2rem;
+    left: 10px;
+    top: -8px;
+  }
+  .header-tag {
+    position: absolute;
+    top: 2px;
+    margin-top: 0.8em;
+    margin-bottom: 3.2em;
+    margin-left: 20px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1.5px;
   }
 }
