@@ -55,6 +55,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 40px auto;
 }
 .button-material {
   width: 5em;
@@ -82,7 +83,7 @@ body {
   display: grid;
   padding: 20px;
   border-radius: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   align-items: center;
   justify-items: center;
   box-shadow: inset 5px 5px 5px #fdfdfdd8, inset -5px -5px 5px #fdfdfdd8;
