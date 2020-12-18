@@ -70,20 +70,39 @@ const MaterialList = () => {
     return arrayFiltered;
   };
 
+  const totalFeeCalculator = (selectedMaterialArray, selectedBreadArray) => {
+    let selectedAll = [...selectedMaterialArray, ...selectedBreadArray];
+    let selectedFee = selectedAll.map((item) => {
+      return parseInt(item.fee.substr(0, item.fee.indexOf("₺")));
+    });
+
+    const reducer = (accumulator, item) => {
+      return accumulator + item;
+    };
+
+    let totalFee = selectedFee.reduce(reducer, 0);
+
+    return totalFee + "₺";
+  };
+
   return (
     <div className="material-list">
       {showFinalMaterials ? (
-        <div className="material-list-container">
+        <div className="material-list-container sandwich-container">
           <Sandwich
             materialList={mapToSelected(selectedMaterials)}
             bread={mapToSelected(selectedBread)}
+            totalFee={totalFeeCalculator(
+              mapToSelected(selectedMaterials),
+              mapToSelected(selectedBread)
+            )}
           />
         </div>
       ) : (
         <div className="material-list-container">
           {nextMaterial
             ? selectedBread.map((material) => {
-                const { id, isSelected, src, name } = material;
+                const { id, isSelected, src, name, fee } = material;
                 return (
                   <Material
                     key={id}
@@ -91,11 +110,12 @@ const MaterialList = () => {
                     isSelected={isSelected}
                     src={src}
                     name={name}
+                    fee={fee}
                   />
                 );
               })
             : selectedMaterials.map((material) => {
-                const { id, isSelected, src, name } = material;
+                const { id, isSelected, src, name, fee } = material;
                 return (
                   <Material
                     key={id}
@@ -103,6 +123,7 @@ const MaterialList = () => {
                     isSelected={isSelected}
                     src={src}
                     name={name}
+                    fee={fee}
                   />
                 );
               })}

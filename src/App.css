@@ -62,7 +62,7 @@ body {
   padding: 5px;
   color: #fff;
   outline: none;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   border: 2px solid rgba(250, 255, 255, 0.8);
   border-radius: 20px;
   background-color: #0093e9;
@@ -70,6 +70,8 @@ body {
 }
 .button-material:hover {
   cursor: pointer;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  transform: scale(1.02);
 }
 .material-list-container {
   max-width: 500px;
@@ -95,7 +97,7 @@ body {
   align-items: center;
   margin: 16px 0px;
   width: 85px;
-  height: 65px;
+  height: 90px;
   border-radius: 8px;
   background: linear-gradient(
     135deg,
@@ -105,10 +107,12 @@ body {
   );
   backdrop-filter: blur(8px);
   border: 1px solid rgb(122 122 122 / 30%);
-  box-shadow: 0 0 60px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
 }
 .material-container:hover {
   cursor: pointer;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  transform: scale(1.1);
 }
 .material-image {
   width: 50px;
@@ -139,6 +143,27 @@ body {
 .material-icon.notSelected {
   color: rgb(25, 27, 26);
 }
+.fee-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.material-fee.isSelected {
+  color: rgb(0, 214, 82);
+}
+.material-fee.notSelected {
+  color: rgb(25, 27, 26);
+}
+.material-list-container.sandwich-container {
+  margin: 50px auto;
+}
+.sandwich-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .sandwich-image.small {
   width: 35px;
   height: 35px;
@@ -146,6 +171,17 @@ body {
 .sandwich-image.big {
   width: 90px;
   height: 90px;
+}
+.total-fee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.total-fee.line {
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid yellow;
 }
 
 @keyframes header {
