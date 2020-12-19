@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Material from "./Material";
 import Sandwich from "./Sandwich";
 import { materials } from "../data/materialData";
 import { breads } from "../data/materialData";
+import tick from "../assets/tick.gif";
 
 const MaterialList = () => {
   const [selectedMaterials, setSelectedMaterials] = useState(materials);
   const [selectedBread, setSelectedBread] = useState(breads);
   const [nextMaterial, setNextMaterial] = useState(false);
   const [showFinalMaterials, setShowFinalMaterials] = useState(false);
+  const [showCheck, setShowCheck] = useState(true);
 
   const toggleSelected = (id, type) => {
     if (type === "material") {
@@ -40,6 +42,20 @@ const MaterialList = () => {
     }
   };
 
+  useEffect(() => {
+    let interval = null;
+    if (showFinalMaterials) {
+      if (showCheck) {
+        interval = setInterval(() => {
+          setShowCheck(false);
+        }, 3500);
+      }
+    }
+
+    console.log(interval, showCheck);
+    return () => clearInterval(interval);
+  }, [showFinalMaterials, showCheck]);
+
   const totalNumberOfSelected = (thingsArray) => {
     let totalNumber = 0;
     thingsArray.map((thing) => {
@@ -47,6 +63,7 @@ const MaterialList = () => {
         totalNumber++;
       }
     });
+
     return totalNumber;
   };
 
@@ -87,17 +104,39 @@ const MaterialList = () => {
 
   return (
     <div className="material-list">
-      {showFinalMaterials ? (
-        <div className="material-list-container sandwich-container">
-          <Sandwich
-            materialList={mapToSelected(selectedMaterials)}
-            bread={mapToSelected(selectedBread)}
-            totalFee={totalFeeCalculator(
-              mapToSelected(selectedMaterials),
-              mapToSelected(selectedBread)
-            )}
-          />
+      {!showFinalMaterials ? (
+        nextMaterial ? (
+          <div className="prompt">
+            <p>Sandviç Ekmeğini Seçiniz</p>
+          </div>
+        ) : (
+          <div className="prompt">
+            <p>Sandviç Malzemelerini Seçiniz</p>
+          </div>
+        )
+      ) : showCheck ? null : (
+        <div className="prompt">
+          <p>Afiyet Olsun</p>
         </div>
+      )}
+      {showFinalMaterials ? (
+        showCheck ? (
+          <div className="image-tick-container">
+            <img className="image-tick" src={tick} alt="tick" />
+            <p className="tick-text">Sandviçiniz Hazırlanıyor </p>
+          </div>
+        ) : (
+          <div className="material-list-container sandwich-container">
+            <Sandwich
+              materialList={mapToSelected(selectedMaterials)}
+              bread={mapToSelected(selectedBread)}
+              totalFee={totalFeeCalculator(
+                mapToSelected(selectedMaterials),
+                mapToSelected(selectedBread)
+              )}
+            />
+          </div>
+        )
       ) : (
         <div className="material-list-container">
           {nextMaterial
